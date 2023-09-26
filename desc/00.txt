@@ -1,0 +1,38 @@
+# hooks
+
+
+Collection of React Hooks ready to install with NPM
+
+
+* [ ] useTitle
+    - react document의 title을 몇 개의 hooks와 함께 바꿈
+* [ ] useInput
+    - input 업데이트 
+* [ ] usePageLeave
+    - user가 page를 벗어나는 시점을 발견하고 함수를 실행
+* [ ] useClick
+    - element를 클릭하는 시점을 발견
+* [ ] useFadeIn
+    - 어떤 element든 상관없이 애니메이션을 element 안으로 서서히 사라지게 만듦
+* [ ] useFullscreen
+    - 어떤 element든 풀스크린으로 되게 하거나 일반 화면으로 돌아가게 할 수 있음
+* [ ] useHover
+    - 어떤 element에 마우스를 올렸을 때 감지
+* [ ] useNetwork
+    - network의 상태 감지(online / offline)
+* [ ] useNotification
+    - notification API를 사용할 때 user에게 알림을 보내줌
+* [ ] useScroll
+    - 스크롤을 사용할 때 감지
+* [ ] useTabs
+    - 웹사이트 메뉴 또는 tab을 사용하기 쉽게 만들어줌
+* [ ] usePreventLeave
+    - 변경사항이 있는데도, user가 저장하지 않고 페이지를 벗어나려 할 때 확인
+* [ ] useConfirm
+    - usePreventLeave와 비슷한 기능
+* [ ] useAxios
+    - HTTP requests client axios를 위한 wrapper
+
+
+## 실습환경
+https://codesandbox.io/

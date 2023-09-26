@@ -1,0 +1,10 @@
+# useTabs() 예시
+{
+    * const content = [{ tab: ..., content:... }, .... ];
+        - 탭의 제목과 내용이 있는 object array 생성
+
+    * <div>{content.map((section, index) => <button key={index}>{section.tab}</button>)}</div>
+        - App Component 안에 탭 기능을 하는 버튼 두개 생성
+        - 버튼 클릭 시 탭 내용 나오도록 하기
+    
+}

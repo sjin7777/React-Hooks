@@ -1,0 +1,37 @@
+# useInput() Upgrade 예시
+{
+    * const useInput = (initialValue, validator) => {...};
+        - validator는 유효성 검증할 때 사용할 값
+
+    * let willUpdate = true;
+        - onChange() 함수 안에 설정
+
+    * if(typeof validator === 'function') willUpdate = valiedator(value);
+        - onChange() 함수 안에 설정
+        - validator의 타입이 function이면 value의 유효성 검사를 실행함
+
+    * if(willUpdate) setKeyword(value);
+        - onChange() 함수 안에 설정
+        - willUpdate는 true이므로 항상 업데이트가 됨
+
+    * const maxLen = (value) => value.length <= 10;
+        - App Component 안에 유효성 검사를 실행하는 함수를 생성
+        - 최대 길이를 검증하는 함수
+        - validator function이 true 또는 false를 return 해야 함
+        - value의 길이가 true여야 update 가능 => 즉 10자까지만 나옴
+
+    * const name = useInput("Mr.", maxLen);
+        - maxLen값을 useInput()에 있는 validator value로 전달 
+        - name을 사용해서 useInput 인자에 "Mr", maxLen 을 넣어줌
+
+
+    ** maxLen처럼 boolean 타입을 return 한다면 검증 기능을 추가하여 이렇게 사용 가능
+
+
+    * const includeVal = (value) => !value.includes("@");
+    const name = useInput("Mr.", includeVal);
+        - 또 다른 유효성 검증 함수 생성
+        - @를 포함하고 있지 않으면 true를 return하여 업데이트
+        - 즉, @가 없어야 업데이트 가능 
+        - @는 아예 입력조차 되지 않아짐
+}

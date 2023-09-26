@@ -1,0 +1,47 @@
+# useInput 예시
+{
+    * const useInput = (initialValue) => { const [keyword, setKeyword] = useState(initialValue); return { keyword }; };
+        - useInput 함수 생성
+        - 인자로 initialValue를 받음
+        - useInput 함수 안에 useState 사용하여 state 설정
+        - return 값을 keyword로 설정
+        - 여기서 return {keyword}는 return{keyword: keyword} 를 줄여쓴 것
+    
+    * <input placeholder="Name" />
+        - input 태그 생성
+
+    * const name = useInput("Mr.");
+        - useInput을 이용하여 값 설정
+        - 기본값이 "Mr."
+
+    * <input placeholder="Name" value={name.keyword} />
+        - value 값을 name.keyword를 넣으면 input 창에 기본값인 "Mr."가 뜸
+        - useInput()은 keyword를 return하므로 name의 값은 keyword와 같음
+
+    * <input placeholder="Name" {...name} />
+        - 위 코드와 같은 결과값을 나오게 함
+        - name 안에 있는 모든 것을 풀어줌. 즉 리턴값들을 가져옴
+        - 그렇기에 name.keyword와 같음
+
+
+    * const onChange = (event) => setKeyword(event.target.value);
+        - useInput() 함수 안에 setKeyword 함수를 실행시키는 onChange 함수 생성
+        - event를 불러와서 setKeyword 괄호 안에 event.target.value를 넣어 입력한 값을 keyword 값으로 넣어줌
+    
+    * const onChange = (event) => { const { target: {value}} = event; setKeyword(value)};
+        - 위 코드와 동일
+
+    * const useInput = (initialValue) => { const [keyword, setKeyword] = useState(initialValue); return { keyword, onChange }; };
+        - useInput return 값에 onChange도 넣어줌
+
+    * <input placeholder="Name" value={name.keyword} onChange={name.onChange} />
+        - 값이 변경되는 것을 감지
+
+    * <input placeholder="Name" {...name} />
+        - 위 코드와 동일
+        - name 안에 있는 것을 unpack (스프레드 연산자)
+
+
+    * 다른 function에서도 input 입력값에 대한 이벤트 처리 가능 
+
+}

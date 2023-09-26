@@ -1,0 +1,36 @@
+# useState - function Component
+{
+    * import { useState } from "react";
+        - 사용 전에는 항상 import
+
+    * const [item, setItem] = useState(init);
+        - 항상 2개의 value(item, setItem)를 return (2개이므로 Array)
+        - setItem: 값을 변하게 하는 함수
+        - item: setItem에 의해서 값이 변하는 data (state)
+        - init: item의 초기값
+
+    * const item = useState(init)[0];
+        - 만약, item만 사용하고 싶을 경우
+
+    * const setItem = useState(init)[1];
+        - 만약, setItem만 사용하여 function을 수정하고 싶을 경우       
+}
+
+# useState - function Component 예시
+{
+    * import { useState } from "react"
+
+    * const [item, setItem] = useState(0);
+
+    * <h1>Click Count: {item}</h1>
+        - return 안에 state data인 {item}을 넣어서 render
+
+    * const incrementItem = () => setItem(item + 1);
+        - setItem 함수를 실행시키는 함수 생성
+        - setItem 소괄호 안에는 먼저 item을 가져오고, 원하는 식으로 item 값을 변경할 수 있도록 작성
+    
+    * <button onClick={incrementItem}>Increment</button>
+        - 클릭 시 incrementItem() 함수를 실행하도록 onClick 이벤트 속성에 추가 (함수와 연결)
+        - 즉, 클릭하면 setItem(item + 1) 함수가 실행되어 'item = item + 1' 식이 작동함
+        - item 값 변경됨
+}
