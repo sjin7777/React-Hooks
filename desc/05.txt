@@ -7,4 +7,31 @@
         - App Component 안에 탭 기능을 하는 버튼 두개 생성
         - 버튼 클릭 시 탭 내용 나오도록 하기
     
+    * const useTabs = (initialTab, allTabs) => {};
+        - initialTab, allTabs을 인자로 받는 useTabs() 함수 생성 
+
+    * const[currentIndex, setCurrentIndex] = useState(initialTab);
+        - useTabs 안에 useState()로 state 생성
+        - 초기값은 initialTab
+
+    * const tabs = useTab(0, content);
+        - App Component 안에 useTab의 기본값이 0, content인 변수 tabs 생성
+
+    * const useTabs = (initialTab, allTabs) => { ... return { currentItem: allTabs[currentIndex]}};
+        - useTabs에서 현재 content의 index return 
+        - currentItem은 allTabs[currentIndex] 임
+
+    * if(!allTabs || Array.isArray(allTabs)) { return; }
+        - useTabs() 안에서 함수가 시작할 때 에러를 확인해야 함
+        - 만약, allTabs가 true가 아니거나 allTabs가 배열이라면 
+
+    * const {currentItem} = useTabs(0, content);
+        - tabs 에서 {currentItem}으로 이름 변경
+
+    * {currentItem.content}
+        - App Component 안에 있는 리턴 값에 넣음
+
+    * changeItem: setCurrentIndex
+        - useTabs() 리턴 값에 넣음
+
 }
