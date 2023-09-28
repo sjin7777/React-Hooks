@@ -1,0 +1,47 @@
+# useEffect()
+    - Class Component의 LifeCycle인 componentDidMount(), componentWillUpdate(), componentWillUnmount()와 비슷함  
+{
+    * import { useEffect } from "react";
+        - 사용 전에는 항상 import
+
+    * useEffect( effect, array );
+        - useEffect는 2개의 인자를 받음
+        - effect: function으로서의 effect
+        - array: dependency
+        - effect는 array 안에 있는 값이 변경될 때만 실행됨
+        - array 자체가 존재하지 않을 경우에는 모든 LifeCycle에서 다 실행됨 (Component 생성, 업뎃, 사라지기 직전)
+        - array 안에 어떤 값도 존재하지 않고, 빈 배열일 경우에는 Component가 처음 생성될 때만 작동함
+        - array 안에 어떤 값이 존재하는 경우에는, 그 값이 변경될 때마다 useEffect는 활성화 상태가 됨
+        
+        - 만약, useEffect로부터 function이 return 되는 경우 => componentWillUnmount() 실행
+
+
+    * useEffect(() => {sayHello()});
+    * useEffect(sayHello);
+        - 두 코드는 같은 역할을 하는 코드
+        - Component가 mount 되자마자 sayHello() 함수 실행됨 => componentDidMount() 역할
+        - Component에 있는 값이 변경되면 sayHello() 함수 실행됨 => componentWillUpdate() 역할
+        - Component가 사라지기 직전에 sayHello() 함수 실행됨 => componentWillUnmount() 역할
+
+
+    * useEffect(() => {sayHello()}, []);
+    * useEffect(sayHello, []);
+        - 두 코드는 같은 역할을 하는 코드
+        - Component가 mount 되자마자 sayHello() 함수 실행
+        - 코드 안에 있는 데이터의 값들이 변하더래도 실행되지 않음(Component 생성 시 딱 한 번만 실행)
+
+
+    * useEffect(() => {sayUpdate()}, [number]);
+    * useEffect(sayUpdate, [number]);
+        - 두 코드는 같은 역할을 하는 코드
+        - Component가 mount 되자마자 sayUpdate() 함수 실행
+        - Component가 number의 값이 변경될 때만 sayUpdate() 함수 실행
+
+
+    * useEffect(() => {sayUpdate()}, [number, aNumber]);
+    * useEffect(sayUpdate, [number, aNumber]);
+        - 두 코드는 같은 역할을 하는 코드
+        - Component가 mount 되자마자 sayUpdate() 함수 실행
+        - Component가 number 또는 aNumber의 값이 변경될 때만 sayUpdate() 함수 실행
+
+}

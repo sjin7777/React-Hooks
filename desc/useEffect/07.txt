@@ -1,0 +1,29 @@
+# useTitle()
+    - 탭 제목을 Update
+{
+    * const useTitle = (initialTitle) => {}
+        - 탭 제목을 Update 해주는 useTab() 생성
+
+    * const [title, setTitle] = useState(initialTitle);
+        - useTitle() 안에 state 생성
+
+    *   const updateTitle = () => { 
+            const htmlTitle = document.querySelector("title");
+            htmlTitle.innerText = title;
+        }
+        - useTitle() 안에 HTML tag인 title을 얻는 함수 생성하고, title tag 값을 state인 title로 지정
+
+    * useEffect(updateTitle, [title])
+        - useEffect()는 Component가 mount될 때와 title이 업데이트가 될 때 updateTitle를 부름
+
+    * return setTitle;
+        - useTitle() 안에서 title로 탭 제목을 update할 수 있도록 setTitle을 return 
+
+    * const titleUpdater = useTitle("Loading...");
+        - 생성한 useTitle()를 App Component 안에서 사용하고, 기본값을 "Loading..."으로 지정
+        - titleUpdater는 setTitle 과 동일하지만, 기본값에 의해 useTitle은 "Loading..."이 됨
+
+    * setTimeout(() => titleUpdater("Home"), 3000);
+        - App Component 안에서 setTimeout()을 사용하여 3초 뒤에 title 값을 "Home" 으로 변경
+
+}

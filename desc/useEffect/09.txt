@@ -1,0 +1,57 @@
+# useClick()
+{
+    *   const useClick = (onClick) => {
+            const element = useRef();
+            return element;
+        }
+        - Element를 클릭했을 경우 알려주도록 useRef() 사용하여 reference 생성
+        - 클릭된 Element를 리턴
+
+
+    * const sayHello = () => console.log('Hello');
+        - App Component에 sayHello 함수 생성
+
+
+    *   const title = useClick(sayHello);
+        <h1 ref={title}>Hi</h1>
+        - App Component에 useClick(sayHello)을 사용하는 title를 생성하고, title를 참조하는 h1 태그 생성
+        - sayHello를 가진 useClick이 mount되면, click 이벤트가 추가됨
+        
+
+    *   useEffect(() => {
+            if(element.current) {
+                element.current.addEventListener("click", onClick);
+            }
+        })
+        - useClick() 안에 useEffect()를 생성    => referent 안에 element.current가 있는지 확인
+        - useEffect()의 effect로는 element가 존재할 경우 element에 이벤트리스너 추가
+        - 해당 태그 클릭 시 해당 함수 실행
+
+    *   useEffect(() => {
+            # useEffect가 mount, update되었을 때 call
+            if(element.current) {
+                element.current.addEventListener("click", onClick);
+            }
+
+            # useEffect가 unmount될 때 call
+            return () => {
+                if(element.current) {
+                    element.current.removeEventListener("click", onClick);
+                }
+            };
+        }, []);
+        - useEffect는 componentDidMount 상태에 동작하므로, Component가 mount될 때 event를 추가시켜줌
+        - componentWillUnmount() 될 때 addEventListener를 지워야 함! (이벤트가 발생한 뒤 없애기)
+        - useEffect()에서 function을 return하면 됨
+        - return할 function은 componentWillUnmount일 때, removeEventListener에 의해 호출되어야 함
+        - 즉, 추가한 이벤트리스너를 스스로 정리하는 것
+
+    *   return typeof onClick !== "function" ? undefined : element;
+
+}
+
+* useEffect(arg1, arg2)
+    - arg2가 빈 배열이고, arg1에 function을 넣는다면 componentDidMount(), componentDidUpdate()때 호출됨
+    - arg2가 빈 배열이 아니고 데이터가 있다면 arg1은 componentDidMount()일 때만 호출됨
+    - arg1 함수를 return하면 componentDidUnmount()가 호출됨
+    (useEffect를 return 받은 함수는 componentWillUnmount 때 호출됨)
