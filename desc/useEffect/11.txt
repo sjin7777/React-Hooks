@@ -1,0 +1,65 @@
+# useConfirm()
+    - 사용자가 무언가를 하기 전에 확인하는 것
+    - 예 > 버튼을 클릭하는 작업을 하면 이벤트를 실행하기 전에 메시지를 보여줌
+            => 이 메시지는 browser에 의해서 만들어지게 됨
+    - browswer는 일단 event가 실행되는 것을 막고서 confirm을 하고, user가 확인을 하면 event(function)을 계속 진행
+    
+{
+    * const useConfirm = (message = "", callback) => {}
+        - message와 callback 함수를 파라미터로 받는 useConfirm 함수() 생성
+        - message의 기본값은 "" (빈 값)
+
+    * if(callback && typeof callback !== "function") { return; }
+        - useConfirm() 함수가 받는 callback 함수가 존재하지 않거나 function이 아닐 경우 리턴시킴
+
+    *   const useConfirm = (message = "", callback) => {
+            if(typeof callback !== "function") { return; }
+
+            const confirmAction = () => {
+                if(window.confirm(message)) { callback(); }
+            }
+
+            return confirmAction;
+        }
+        - useConfirm() 함수 안에서 confirmAction() 함수 생성
+        - confirmAction() 함수 안에서 browser에 message를 가지고 있는지 확인
+        - message를 가지고 있다면 confirm이 화면에 나타나고, callback 함수 실행
+        - useConfirm()은 confirmAction() 함수를 리턴함
+
+    * const deleteWorld = () => console.log("Deleting the world....");
+        - App Component에 함수 생성
+
+    * const confirmDelete = useConfirm("Are your sure", deleteWorld);
+        - App Component에 useConfirm을 이용하여 deleteWorld() 함수 실행시키는 confirmDelete() 함수 생성
+        - 버튼 클릭 시 나오는 confirm 창에 확인 버튼 클릭 시 deleteWorld() 실행
+
+    * <button onClick={confirmDelete}>Delete the world</button>
+        - confirmDelete()가 button 클릭 시 발생하는 Event
+
+
+    * const abort = () => console.log("Aborted");
+        - confirm 시 나오는 창에 취소를 눌렀을 때 실행되는 함수
+
+    * const confirmDelete = useConfirm("Are your sure", deleteWorld, abort);
+        - App Component에 있는 confirmDelete() 수정
+        - 버튼 클릭 시 나오는 confirm 창에 확인 버튼 클릭 시 deleteWorld() 실행, 취소 버튼 클릭 시 abort() 실행 
+
+    *   const useConfirm = (message = "", callback, rejection) => {
+            if(typeof callback !== "function") { return; }
+
+            const confirmAction = () => {
+                if(window.confirm(message)) { callback(); }
+                else { rejection(); }
+            }
+
+            return confirmAction;
+        }
+        - useConfirm() 함수 수정
+
+    * if(!callback || typeof callback !== "function") { return; }
+        - useConfirm() 함수가 받는 callback 함수가 존재하지 않거나 function이 아닐 경우 리턴시킴
+
+    * if(rejection && typeof rejection !== "function") { return; }
+        - useConfirm() 함수가 받는 rejection 함수가 존재하면서 function이 아닐 경우 리턴시킴
+        - rejection은 반드시 확인해야 할 조항이 아니므로 존재는 하는데 function이 아닐 경우에만 return
+}

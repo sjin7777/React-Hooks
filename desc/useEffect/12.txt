@@ -1,0 +1,30 @@
+# usePreventLeave()
+    - window창을 닫을 때, 저장하지 않았다고 알려줌
+
+{
+    * const usePreventLeave = () => {}
+        - window창을 닫을 때, 확인하는 함수 생성
+
+    * const enablePrevent = () => window.addEventListener("beforeunload", listener);
+    * const disablePrevent = () => window.removeEventListener("beforeunload", listener);
+        - usePreventLeave() 함수에 두 개의 함수 생성하여 이벤트 리스너 생성
+
+    *   const listener = (event) => {
+            event.preventDefault();
+            event.returnValue = "";
+        }
+        - preventDefault()로 event를 막음
+        - beforeunload 이벤트는 returnValue의 값이 무엇이든지 요구함
+
+    * const usePreventLeave = () => { ... return { enablePrevent, disablePrevent }};
+        - usePreventLeave()은 { enablePrevent, disablePrevent }를 리턴함
+
+    * const {enablePrevent, disablePrevent} = usePreventLeave();
+        - App Component 안에 usePreventLeave()를 사용하여 생성
+
+    *   <button onClick={enablePrevent}>Protect</button>
+        <button onClick={disablePrevent}>Unprotect</button>
+        - 버튼 두개를 생성하여 이벤트리스너 추가 
+        - Protect 버튼 클릭 시, window창을 닫을 때 확인하는 것을 활성화
+        - Unprotect 버튼 클릭 시, window창을 닫을 때 확인하는 것을 비활성화
+}

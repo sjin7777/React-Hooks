@@ -1,0 +1,4 @@
+# useHover()
+{
+    - useClick()에서 발생하는 event만 다를 뿐 나머지는 같음
+}
