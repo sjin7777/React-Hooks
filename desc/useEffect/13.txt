@@ -1,0 +1,51 @@
+# useBeforeLeave()
+    - 기본적으로 탭을 닫을 때 실행되는 함수
+
+{
+    * const useBeforeLeave = (onBefore) => {}
+        - onBefore함수를 받아오는 useBeforeLeave() 생성
+
+
+    * const handleLeave = () => onBefore();
+        - onBefore함수를 실행시키는 함수 생성
+
+
+    *   useEffect(() => {
+            # Component가 mount 되었는데 마우스가 document를 벗어났을 때 handleLeave 함수 실행 
+            # document에 이벤트리스너 추가
+            document.addEventListener("mouseleave", handleLeave);
+            
+            # 이벤트리스너를 지우기 위해 return 처리
+            return () => {
+                # componentWillUnmount 일 때 handleLeave 함수 제거
+                document.removeEventListener("mouseleave", handleLeave);
+            }
+
+        # 빈 배열([])로 설정함으로써 Event가 document에 계속 추가되는걸 막고, 단 한번만 실행되게 해줌
+        }, [])
+        - useBeforeLeave() 안에 useEffect() 실행
+        - Component가 mount 되었는데, 마우스가 document를 벗어났을 때마다 실행 
+        - componentWillUnmount 일 때 handleLeave 함수 제거
+
+
+    *   const useBeforeLeave = (onBefore) => {
+            if(typeof onBefore !== "function") { return; }
+            ...
+        }
+        - useBeforeLeave() 함수에 받아온 onBefore 값을 function인지 확인하여 아닌 경우 리턴함
+
+
+    * const begForLife = () => console.log("Plz dont leave");
+        - App Component에 마우스가 document를 벗어났을 경우 실행할 함수 생성
+
+
+    * useBeforeLeave(begForLife);
+        - App Component에서 useBeforeLeave()에 begForLife 넣어서 실행
+
+    *   const handleLeave = (event) => {
+            const { clientY } = event;
+            if(clientY <= 0) { onBefore(); }
+        }
+        - handleLeave() 함수를 onBefore()를 실행시키는 함수로만 사용할게 아니라, event를 받아와서 현재 mouse의 위치도 알 수 있음
+        - clientY의 값이 0보다 작을 경우에만 onBefore() 함수를 실행 (이건 그냥 이벤트 이용해서 사용할 수 있는거 보려고 하는거)
+}

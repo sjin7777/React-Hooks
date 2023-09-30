@@ -11,7 +11,8 @@ import ReactDOM from 'react-dom/client';
 // import App from './useEffect/09.useClick';
 // import App from './useEffect/10.useHover';
 // import App from './useEffect/11.useConfirm';
-import App from './useEffect/12.usePreventLeave';
+// import App from './useEffect/12.usePreventLeave';
+import App from './useEffect/13.useBeforeLeave';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

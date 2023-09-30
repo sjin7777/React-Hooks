@@ -1,4 +1,3 @@
-
 const usePreventLeave = () => {
     const listener = (event) => {
         event.preventDefault();

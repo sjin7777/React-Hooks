@@ -8,6 +8,7 @@
     * const enablePrevent = () => window.addEventListener("beforeunload", listener);
     * const disablePrevent = () => window.removeEventListener("beforeunload", listener);
         - usePreventLeave() 함수에 두 개의 함수 생성하여 이벤트 리스너 생성
+        - beforeunload는 window가 닫히기 전에 function이 실행되는걸 허락함
 
     *   const listener = (event) => {
             event.preventDefault();
