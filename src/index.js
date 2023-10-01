@@ -12,7 +12,11 @@ import ReactDOM from 'react-dom/client';
 // import App from './useEffect/10.useHover';
 // import App from './useEffect/11.useConfirm';
 // import App from './useEffect/12.usePreventLeave';
-import App from './useEffect/13.useBeforeLeave';
+// import App from './useEffect/13.useBeforeLeave';
+// import App from './useEffect/14.useFadIn';
+// import App from './useEffect/15.useNetwork';
+// import App from './useEffect/16.useScroll';
+import App from './useEffect/17.useFullscreen';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

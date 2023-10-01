@@ -1,0 +1,50 @@
+# useNetwork()
+    - navigator가 online 또는 offline 되는걸 막아줌
+    - network 상태가 바뀔 때마다 함수를 실행하여 알려줌
+
+{   
+
+    const useNetwork = (onChange) => {
+        # useNetwork() 안에 기본값이 navigator.onLine인 status 생성
+        # navigator.onLine은 true 또는 false를 리턴하여 온라인인지 오프라인인지를 알려줌
+        const [status, setStatus] = useState(navigator.onLine);
+        
+        const handleChange = () => {
+            # onChange가 function일 때만, useNetwork의 인자로 들어온 함수를 실행하여 onLine 여부 판단
+            if(typeof onChange === "function") {
+                onChange(navigator.onLine);
+            }
+
+            # network 상태에 따라서 status 변경 값 설정 
+            setStatus(navigator.onLine);
+        };
+            
+
+
+        useEffect(() => {
+            # Component가 mount 될 때, 해당 함수 실행
+            window.addEventListener("online", handleChange);
+            window.addEventListener("offline", handleChange);
+
+            # componentWillUnmount될 때, 해당 함수 실행
+            return () => {
+                window.removeEventListener("online", handleChange);
+                window.removeEventListener("offline", handleChange);
+            };
+        }, []);
+        return status;
+    }
+
+    function App() {
+        const handleNetworkChange = (online) => {
+            console.log(online ? "We just went online" : "We are offline");
+        }
+        const onLine = useNetwork(handleNetworkChange);
+        return (
+            <div>
+                <h1>{onLine ? "Online" : "Offline"}</h1>
+            </div>
+        );
+    }
+
+}

@@ -1,0 +1,61 @@
+# useFadeIn()
+    - element를 서서히 나타나게 만들기
+{
+    * const useFadeIn = () => {}
+        - 일단 기본값은 비워둔 상태로 useFadeIn() 생성
+    
+    * const element = useRef();
+        - useFadeIn()안에 useRef()를 이용하여 element 생성
+
+    * const useFadeIn = () => { ... return { ref: element, style: { opacity: 0 } };}
+        - useFadeIn() 리턴값으로 기본값을 참조하는 element와 원하는 style을 설정하여 object로 설정 
+        - opacity: 0 (투명도가 0, 0이면 투명, 1이면 불투명)
+
+    *   const fadeInH1 = useFadeIn();
+        const fadeInP = useFadeIn();
+        - App Component안에 useFadeIn() 이용하여 생성
+
+    *   <h1 {...fadeInH1} >Hello</h1>
+        <p {...fadeInP} >lorem ipsum lalalalal</p>
+        - fadeInH1 값들을 h1 태그의 props로 받음
+        - fadeInP 값들을 p 태그의 props로 받음
+
+
+    *   useEffect(() => {
+            if(element.current) {
+                const { current } = element;
+                current.style.transition = `opacity 3s`;
+                current.style.opacity = 1;
+            }
+        }, []);
+        - useFadeIn() 안에서 useEffect() 사용 
+        - element를 나타나게 하기 위한 설정
+        - element가 있으면, 3초 뒤에 투명도를 1로 변경해서 불투명하게 (보이도록) 설정
+        - componentDidMount() 시에만 동작하도록 dependency를 비워둠
+
+
+
+
+    *   const useFadeIn = (duration = 1, delay = 0) => {
+            // if(typeof duration  !== "number" || typeof delay !== "number") { return; }
+            const element = useRef();
+            
+            useEffect(() => {
+                if(element.current) {
+                    const { current } = element;
+                    current.style.transition = `opacity ${duration}s ease-in-out ${delay}s`;
+                    current.style.opacity = 1;
+                }
+            }, []);
+
+            return { ref: element, style: { opacity: 0 } };
+        }
+        - useFadeIn()에 각 태그마다 원하는 style 설정할 수 있도록 인자값을 받아오고, 기본값을 설정해줌
+
+    *   const fadeInH1 = useFadeIn(1, 2);
+        const fadeInP = useFadeIn(5, 10);
+        - useFadeIn() 파라미터 설정하여 전달
+        - fadeInH1은 2초 뒤에 1초동안 opacity가 1이 됨
+        - fadeInP은 10초 뒤에 5초동안 opacity가 1이 됨
+
+}
