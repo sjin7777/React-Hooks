@@ -16,7 +16,9 @@ import ReactDOM from 'react-dom/client';
 // import App from './useEffect/14.useFadIn';
 // import App from './useEffect/15.useNetwork';
 // import App from './useEffect/16.useScroll';
-import App from './useEffect/17.useFullscreen';
+// import App from './useEffect/17.useFullscreen';
+// import App from './useEffect/18.useNotification';
+import App from './useEffect/19.useAxios';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

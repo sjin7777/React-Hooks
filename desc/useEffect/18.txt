@@ -1,0 +1,2 @@
+# useNotification()
+    - 크롬 알람이 실행되는 function
