@@ -32,3 +32,11 @@
 16. README.md 작성
 
 
+17. https://www.npmjs.com/
+    - https://www.npmjs.com/org/create
+    - Oranization 생성
+18. npm login
+    - vscode에서 npm 로그인
+19. npm publish --access public
+    - publish
+
