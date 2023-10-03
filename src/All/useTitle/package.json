@@ -1,0 +1,26 @@
+{
+  "name": "@nooks/use-title",
+  "version": "1.0.0",
+  "description": "description: React Hook to update your documents' title",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjin7777/React-Hooks.git"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "title",
+    "useTitle"
+  ],
+  "author": "SJin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sjin7777/React-Hooks/issues"
+  },
+  "homepage": "https://github.com/sjin7777/React-Hooks#readme",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

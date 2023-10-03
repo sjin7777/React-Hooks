@@ -1,0 +1,34 @@
+# Publishing to NPM
+1. cd src/All/훅이름
+    - cd src/All/useTitle
+2. npm init
+    - npm init
+3. package name: @nooks/훅이름
+    - @nooks/use-title
+4. version: (1.0.0) 엔터
+5. description: React Hook to update your documents' 훅이름
+    - description: React Hook to update your documents' title
+6. entry point: (index.js) 엔터
+7. test command: 엔터
+8. git repository: https://github.com/sjin7777/React-Hooks.git
+9. keywords: react, react hooks, hooks, 훅이름
+    - keywords: react, react hooks, hooks, title, useTitle 
+10. author: SJin
+11. license: (ISC) MIT
+12. Is this OK? (yes) yes
+
+
+13. 해당 폴더(패키지)에 생성된 package.json 파일 확인 
+    - "scripts" 부분 제거
+    - "main"은 반드시 존재해야 함
+        => 이 패키지는 다른 사람들이 설치해야 하기 때문
+    - "keywords"에 중복된 것 제거
+14. npm i react react-dom
+    - 해당 hooks을 사용하려면 필요한 패키지를 package.json 파일에 알려주기
+    - 해당 명령어를 실행하면 package.json에 "dependencies"가 추가되어 있음
+    - useTitle()의 경우 useState, useEffect가 필요함
+15. dependencies => peerDependencies로 변경
+    - 요구되지만, 설치할 필요가 없다는 뜻
+16. README.md 작성
+
+
